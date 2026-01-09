@@ -6,3 +6,8 @@ export interface Note {
  updatedAt: string,
  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo"   
 }
+export interface CreateNote {
+    title: string,
+    content: string,
+    tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo"
+}

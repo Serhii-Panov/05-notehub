@@ -2,7 +2,7 @@ import css from "./NoteList.module.css";
 import type { Note } from "../../types/note";
 
 interface NoteListProps {
-  onSelect: (note: Note) => void;
+  // onSelect: (note: Note) => void;
   notes: Array<Note>;
 }
 
@@ -14,7 +14,7 @@ export default function NoteList(props: NoteListProps) {
           <li
             key={note.id}
             className={css.listItem}
-            onClick={() => props.onSelect(note)}
+            // onClick={() => props.onSelect(note)}
           >
             <h2 className={css.title}>{note.title}</h2>
             <p className={css.content}>{note.content}</p>
