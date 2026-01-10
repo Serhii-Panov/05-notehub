@@ -1,31 +1,19 @@
 import css from "./SearchBox.module.css"
-import toast from "react-hot-toast";
-interface SearchBarProps {
-  onSubmit: (query: string) => void;
+
+interface SearchBoxProps {
+  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchQuery?: string;
 }
-export default function SearchBar({ onSubmit }: SearchBarProps) {
-  const handleSubmit = (formData: FormData) => {
-    const query = formData.get("query") as string;
-    if (query === "") {
-      toast.error("Please enter your search query");
-      return;
-    }
-    onSubmit(query);
-  };
+
+export default function SearchBox(props: SearchBoxProps) {
   return (
-      <div>
-        {" "}
-        <form action={handleSubmit}>
-          {" "}
           <input
             className={css.input}
             type="text"
             name="query"
-            autoComplete="off"
-            placeholder="Search movies..."
-            autoFocus
-          />{" "}
-        </form>{" "}
-      </div>
+            placeholder="Search notes"
+            onChange={props.onSearch}
+            defaultValue={props.searchQuery}
+            />
   );
 }

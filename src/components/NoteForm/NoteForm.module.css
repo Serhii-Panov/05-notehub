@@ -11,7 +11,11 @@
   font-weight: 500;
   color: #212529;
 }
-
+/* fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+} */
 .input,
 .textarea,
 .select {

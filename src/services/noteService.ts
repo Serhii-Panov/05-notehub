@@ -2,7 +2,7 @@ import axios from "axios";
 import type {Note} from "../types/note"
 
 export interface FetchNotesParams {
-    query?: string,
+    search?: string,
     tag?: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo",
     page : number,
     perPage: number,
@@ -24,7 +24,7 @@ export async function fetchNotes(params:FetchNotesParams):Promise<NoteApiRespons
       try {
     const {data} = await axios.get<NoteApiResponse>(API_URL, {
       params: {
-        query: params.query,
+        search: params.search,
         tag: params.tag,
         page: params.page,
         perPage: params.perPage,
@@ -70,8 +70,8 @@ export async function deleteNote(id:string): Promise<Note> {
 
     return data;
   } catch (error) {
-    console.error("Error creating note:", error);
-    throw new Error("Failed to create note");
+    console.error("Error deleting note:", error);
+    throw new Error("Failed to delete note");
   }
     // має виконувати запит для видалення нотатки за заданим ідентифікатором. 
     // Приймає ID нотатки та повертає інформацію про видалену нотатку у відповіді.

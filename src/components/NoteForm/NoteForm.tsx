@@ -16,8 +16,9 @@ const initialValues: CreateNote = {
   tag: "Todo",
 };
 const NoteSchema = Yup.object().shape({
-  title: Yup.string().required("Title is required"),
-  content: Yup.string().required("Content is required"),
+  title: Yup.string().min(3, "Title is too short").max(50,"Title is too long" ).required("Title is required"),
+  content: Yup.string().max(500, "are you writing a book here? make it shorter").required("Content is required"),
+  tag: Yup.string().oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"]).required("Tag is required"),
 });
 export default function NoteForm(props: NoteFormProps) {
   const fieldId = useId();
@@ -46,7 +47,6 @@ export default function NoteForm(props: NoteFormProps) {
       onSubmit={handleSubmit}
     >
       <Form className={css.form}>
-        <fieldset>
           <div className={css.formGroup}>
             <label htmlFor={`${fieldId}-title`}>Title</label>
             <Field
@@ -57,9 +57,7 @@ export default function NoteForm(props: NoteFormProps) {
             />
             <ErrorMessage name="title" component="span" className={css.error} />
           </div>
-        </fieldset>
         <div className={css.formGroup}>
-          <fieldset>
             <label htmlFor={`${fieldId}-content`}>Content</label>
             <Field
               as="textarea"
@@ -73,11 +71,9 @@ export default function NoteForm(props: NoteFormProps) {
               component="span"
               className={css.error}
             />
-          </fieldset>
         </div>
 
         <div className={css.formGroup}>
-          <fieldset>
             <label htmlFor={`${fieldId}-tag`}>Tag</label>
             <Field
               as="select"
@@ -91,7 +87,6 @@ export default function NoteForm(props: NoteFormProps) {
               <option value="Meeting">Meeting</option>
               <option value="Shopping">Shopping</option>
             </Field>
-          </fieldset>
         </div>
 
         <div className={css.actions}>
