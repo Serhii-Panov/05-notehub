@@ -1,7 +1,7 @@
 import css from "./SearchBox.module.css"
 
 interface SearchBoxProps {
-  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchQuery?: string;
 }
 

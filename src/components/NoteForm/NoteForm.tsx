@@ -17,7 +17,7 @@ const initialValues: CreateNote = {
 };
 const NoteSchema = Yup.object().shape({
   title: Yup.string().min(3, "Title is too short").max(50,"Title is too long" ).required("Title is required"),
-  content: Yup.string().max(500, "are you writing a book here? make it shorter").required("Content is required"),
+  content: Yup.string().max(500, "are you writing a book here? make it shorter"),
   tag: Yup.string().oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"]).required("Tag is required"),
 });
 export default function NoteForm(props: NoteFormProps) {

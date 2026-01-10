@@ -8,7 +8,7 @@ export interface FetchNotesParams {
     perPage: number,
     sortBy?: "created" | "updated"
 }
-interface createNoteParams {
+interface CreateNoteParams {
     title: string,
     content: string,
     tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo"
@@ -35,14 +35,13 @@ export async function fetchNotes(params:FetchNotesParams):Promise<NoteApiRespons
         Accept: "application/json",
       },
     });
-    console.log('Raw API response:', data);  // ADD THIS LINE
     return data;
   } catch (error) {
     console.error("Error fetching notes:", error);
     throw new Error("Failed to fetch notes");
   }
 }
-export async function createNote(newNote:createNoteParams): Promise<Note> {
+export async function createNote(newNote:CreateNoteParams): Promise<Note> {
   try {
     const {data} = await axios.post<Note>(API_URL, newNote, {
       headers: {
